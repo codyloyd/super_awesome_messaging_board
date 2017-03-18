@@ -4,4 +4,7 @@ FactoryGirl.define do
     user_id 1
     post_id 1
   end
+  factory :invalid_comment, parent: :comment do
+    body nil
+  end
 end
