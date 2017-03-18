@@ -35,8 +35,8 @@
     <% if user_signed_in? %>
       <%= form_for([@post, @post.comments.new]) do |f| %>
         <div class="form-group">
-          <%= f.text_area :body, class:"form-control", placeholder: "Leave a Comment"%>
-          <%= f.hidden_field :user_id, value: @post.user_id %>
+          <%= f.text_area :body, class:"form-control mb-1", placeholder: "Leave a Comment"%>
+          <%= f.hidden_field :user_id, value: current_user.id %>
           <%= f.submit class:"btn btn-primary" %>
         </div>
       <% end %>
