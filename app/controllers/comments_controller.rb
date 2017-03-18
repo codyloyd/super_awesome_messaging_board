@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
   end
 
   private
+  
     def comment_params
       params.fetch(:comment, {}).permit(:user_id, :body)
     end
