@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card mb-2">
+      <div class="card-block">
+        <h4 class="card-title">
+          <%= @post.title %>
+        </h4>
+        <h6 class="card-subtitle text-muted"><%= @post.user.full_name %></h6>
+        <p class="card-text">
+          <%= @post.body %>
+        </p>
+        
+        <% if current_user == @post.user %>
+          <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-primary btn-sm" %>
+        <% end %>
+        
+      </div>
+    </div>
+    <%= link_to 'Back', posts_path, class:"btn btn-primary mb-2" %>
+    <h4>Comments:</h4>
+    <% @post.comments.each do |c| %>
+      <div class="card mb-1">
+        <div class="card-block">
+          <p class="card-text">
+            <%= c.body %> <br>
+            <span class="text-muted">
+              <%= c.user.full_name %>
+            </span>
+          </p>
+        </div>
+      </div>     
+    <% end %>
+    <% if user_signed_in? %>
+      <%= form_for([@post, @post.comments.new]) do |f| %>
+        <div class="form-group">
+          <%= f.text_area :body, class:"form-control", placeholder: "Leave a Comment"%>
+          <%= f.hidden_field :user_id, value: @post.user_id %>
+          <%= f.submit class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<p id="notice">
+  <%= notice %>
+</p>
+
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <h1>SUPER AWESOME</h1>
+    <% @posts.each do |post| %>
+      <div class="card mb-1">
+        <div class="card-block">
+        <h5 class="card-title"><%= post.title %></h5>
+        <h6 class="card-subtitle text-muted"><%= post.user.full_name %></h6>
+          <%= post.body %> <br>
+          <span class="text-muted">
+          <%= post.comments.count %> Comments </span>
+          | <%= link_to 'Show', post %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
